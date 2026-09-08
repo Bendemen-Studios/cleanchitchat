@@ -6,17 +6,25 @@ It removes Minecraft's default angle-bracket chat wrapper while preserving the p
 
 ## Example
 
-Vanilla / default chat:
+With the default settings:
 
 ```text
 <[Beheer] JustPetrov> Hallo
 ```
 
-Clean Chit Chat:
+becomes:
 
 ```text
 [Beheer] JustPetrov | Hallo
 ```
+
+The separator is formatted as dark gray and the chat message as gray, matching the requested:
+
+```text
+&f{name} &r&8| &7{message}
+```
+
+The rank prefix/display name remains controlled by the existing FTB Ranks configuration.
 
 ## Features
 
@@ -25,14 +33,13 @@ Clean Chit Chat:
 - Removes the vanilla `< >` chat brackets by default
 - Preserves the decorated player display name
 - Designed to work with FTB Ranks rank/name formatting
-- Can be enabled/disabled at runtime
-- Bracket handling can be toggled at runtime
-- Configuration can be reloaded without restarting the server
+- Toggleable chat separator
+- Toggleable bracket handling
+- Runtime enable/disable
+- Configuration reload without restarting the server
 - No LuckPerms dependency
 
 ## Commands
-
-All commands use the `/chitchat` root command and require permission level 2 (operator/admin access in the normal server command system).
 
 ```text
 /chitchat enable
@@ -40,6 +47,8 @@ All commands use the `/chitchat` root command and require permission level 2 (op
 /chitchat reload
 /chitchat bracket on
 /chitchat bracket off
+/chitchat separation on
+/chitchat separation off
 ```
 
 ### Command behavior
@@ -47,8 +56,10 @@ All commands use the `/chitchat` root command and require permission level 2 (op
 - `/chitchat enable` — enables Clean Chit Chat processing.
 - `/chitchat disable` — disables Clean Chit Chat processing.
 - `/chitchat bracket off` — removes the vanilla angle brackets.
-- `/chitchat bracket on` — keeps the vanilla angle brackets.
-- `/chitchat reload` — reloads the Clean Chit Chat configuration without a server restart.
+- `/chitchat bracket on` — restores normal angle-bracket chat behavior.
+- `/chitchat separation on` — adds the ` | ` separator between the decorated name and chat message.
+- `/chitchat separation off` — removes the separator.
+- `/chitchat reload` — reloads the configuration without restarting the server.
 
 ## Configuration
 
@@ -63,12 +74,29 @@ Default configuration:
 ```properties
 enabled=true
 remove_angle_brackets=true
+separation=true
 ```
 
-Changes to this file can be applied with:
+Changes can be applied with:
 
 ```text
 /chitchat reload
+```
+
+## FTB Ranks setup
+
+Keep the separator out of `ftbranks.name_format` so TAB/player display names do not contain it.
+
+Example TAB/display-name format:
+
+```text
+&8[&r{rank}&r&8] &r&f{name}
+```
+
+Clean Chit Chat adds the separator only in chat when `separation=true`:
+
+```text
+[Rank] Name | Message
 ```
 
 ## Compatibility
