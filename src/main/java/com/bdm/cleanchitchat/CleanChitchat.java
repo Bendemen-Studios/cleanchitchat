@@ -191,18 +191,17 @@ public final class CleanChitchat {
     private static void handleChat(Object event) {
         if (!enabled) return;
         try {
-            // When both chat controls are off, leave normal Minecraft/FTB Ranks chat untouched.
-            if (!removeBrackets && !separation) return;
+            // bracket on = let normal Minecraft/FTB Ranks chat pass through.
+            if (!removeBrackets) return;
 
             Object player = invoke(event, "getPlayer");
             String raw = (String) invoke(event, "getRawText");
             invokeOneArg(event, "setCanceled", Boolean.TRUE);
 
-            Object displayName = invoke(player, "getDisplayName");
-            Object clean = copyComponent(displayName);
+            Object clean = ((Object) invoke(player, "getDisplayName"));
+            clean = copyComponent(clean);
 
             if (separation) {
-                // Requested: &fNaam &r&8| &7chatbericht. Rank prefix remains from FTB Ranks.
                 clean = appendStyled(clean, " | ", "DARK_GRAY");
             }
             clean = appendStyled(clean, raw, "GRAY");
