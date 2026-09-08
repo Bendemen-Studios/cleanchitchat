@@ -1,5 +1,7 @@
 # Clean Chit Chat
 
+**Latest release: 1.0.1**
+
 **Clean Chit Chat** is a lightweight, server-side NeoForge mod for Minecraft 1.21.1.
 
 It removes Minecraft's default angle-bracket chat wrapper while preserving the player's existing decorated display name, including FTB Ranks formatting.
