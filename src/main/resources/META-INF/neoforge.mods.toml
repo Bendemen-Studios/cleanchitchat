@@ -4,7 +4,7 @@ license="GPL-3.0-only"
 
 [[mods]]
 modId="cleanchitchat"
-version="1.0.0"
+version="1.0.1"
 displayName="Clean Chit Chat"
 authors="Bendemen Studios"
 description="Server-side NeoForge chat cleanup that removes the vanilla angle-bracket wrapper while preserving decorated player display names such as FTB Ranks."
