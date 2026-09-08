@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="GPL-3.0-only"
+
+[[mods]]
+modId="cleanchitchat"
+version="1.0.0"
+displayName="Clean Chit Chat"
+authors="Bendemen Studios"
+description="Server-side NeoForge chat cleanup that removes the vanilla angle-bracket wrapper while preserving decorated player display names such as FTB Ranks."
+
+[[dependencies.cleanchitchat]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.250,)"
+ordering="NONE"
+side="SERVER"
+
+[[dependencies.cleanchitchat]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="SERVER"
