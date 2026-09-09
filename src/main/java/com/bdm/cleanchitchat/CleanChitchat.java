@@ -19,7 +19,7 @@ import java.util.function.Supplier;
 @Mod(CleanChitchat.MODID)
 public final class CleanChitchat {
     public static final String MODID = "cleanchitchat";
-    public static final String VERSION = "1.0.0";
+    public static final String VERSION = "1.1.0";
 
     private static boolean enabled = true;
     private static boolean removeBrackets = true;
@@ -191,18 +191,18 @@ public final class CleanChitchat {
     private static void handleChat(Object event) {
         if (!enabled) return;
         try {
-            // bracket on = let normal Minecraft/FTB Ranks chat pass through.
             if (!removeBrackets) return;
 
             Object player = invoke(event, "getPlayer");
             String raw = (String) invoke(event, "getRawText");
             invokeOneArg(event, "setCanceled", Boolean.TRUE);
 
-            Object clean = ((Object) invoke(player, "getDisplayName"));
-            clean = copyComponent(clean);
+            Object clean = copyComponent(invoke(player, "getDisplayName"));
 
             if (separation) {
                 clean = appendStyled(clean, " | ", "DARK_GRAY");
+            } else {
+                clean = appendStyled(clean, " ", "WHITE");
             }
             clean = appendStyled(clean, raw, "GRAY");
 
